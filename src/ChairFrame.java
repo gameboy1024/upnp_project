@@ -19,7 +19,7 @@ import org.cybergarage.upnp.device.*;
 
 public class ChairFrame extends JFrame implements WindowListener 
 {
-	private final static String TITLE = "CyberLink Sample Chair";
+	private final static String TITLE = "Intelligent Chair";
 	private ChairDevice chairDev;
 	private ChairPane chairPane;
 	
@@ -41,6 +41,7 @@ public class ChairFrame extends JFrame implements WindowListener
 		getContentPane().add(chairPane, BorderLayout.CENTER);
 
 		addWindowListener(this);
+		this.setPreferredSize(new Dimension(300	, 100));
 		
 		pack();
 		setVisible(true);

@@ -19,9 +19,9 @@ public class ChairPane extends JPanel {
 	
 	public ChairPane(ChairDevice chairDev){
 		this.chairDev = chairDev;
-		JButton button = new JButton();
+		JButton button = new JButton("Switch");
 		JTextArea text = new JTextArea();
-		text.setText(chairDev.isOn() ? "on": "off");
+		text.setText(chairDev.isOn() ? "Press": "No Press");
 		this.add(button);
 		this.add(text);
 		button.addActionListener(new ActionListener() {
@@ -30,10 +30,10 @@ public class ChairPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if(chairDev.isOn()){
 					chairDev.off();
-					text.setText("off");
+					text.setText("No Press");
 				}else{
 					chairDev.on();
-					text.setText("on");
+					text.setText("Press");
 				}
 			}
 		});

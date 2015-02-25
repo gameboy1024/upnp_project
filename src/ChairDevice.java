@@ -117,15 +117,6 @@ public class ChairDevice extends Device implements ActionListener,
 			powerArg.setValue(state);
 			ret = true;
 		}
-//		if (actionName.equals("SetPower") == true) {
-//			Argument powerArg = action.getArgument("Power");
-//			String state = powerArg.getValue();
-//			setPowerState(state);
-//			state = getPowerState();
-//			Argument resultArg = action.getArgument("Result");
-//			resultArg.setValue(state);
-//			ret = true;
-//		}
 
 		comp.repaint();
 
