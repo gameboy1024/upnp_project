@@ -1,0 +1,3 @@
+[submodule "upnp_chair"]
+	path = upnp_chair
+	url = https://github.com/gameboy1024/upnp-chair.git
