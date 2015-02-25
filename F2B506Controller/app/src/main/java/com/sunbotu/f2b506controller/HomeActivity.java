@@ -1,57 +1,34 @@
 package com.sunbotu.f2b506controller;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.sunbotu.f2b506controller.util.ControlPoint;
-import com.sunbotu.f2b506controller.util.DeviceDiscoverTarget;
-import com.sunbotu.f2b506controller.util.Parameter;
 
+public class HomeActivity extends Activity {
 
-public class HomeActivity extends Activity implements DeviceDiscoverTarget{
+    private static final String PREF_IP = "ip";
+    private static final String PREF_PORT = "port";
 
-    private ControlPoint controlPoint;
-    private TextView debugDevices;
-    private TextView stateChair;
-    private TextView stateBed;
-    private TextView stateBand;
-    private TextView stateDoor;
+    private TextView serverIpTextView;
+    private TextView serverPortTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        controlPoint = new ControlPoint(this);
         setContentView(R.layout.activity_home);
-        debugDevices = (TextView) findViewById(R.id.text_devices);
-        stateChair = (TextView) findViewById(R.id.state_chair);
-        stateBed = (TextView) findViewById(R.id.state_bed);
-        stateBand = (TextView) findViewById(R.id.state_wristband);
-        stateDoor = (TextView) findViewById(R.id.state_door);
+
+        serverIpTextView = (TextView) findViewById(R.id.ip);
+        serverPortTextView = (TextView) findViewById(R.id.port);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        serverIpTextView.setText(pref.getString(PREF_IP, "192.168.1.100"));
+        serverPortTextView.setText(pref.getString(PREF_PORT, "4445"));
     }
 
-    public void deviceDiscovered() {
-        // Debugging message
-        debugDevices.setText(controlPoint.printAllDevices());
-        if(controlPoint.getDevice(Parameter.DEV_CHAIR) != null) {
-            stateChair.setText("Connected");
-        }
-        if(controlPoint.getDevice(Parameter.DEV_BED) != null) {
-            stateBed.setText("Connected");
-        }
-        if(controlPoint.getDevice(Parameter.DEV_BAND) != null) {
-            stateBand.setText("Connected");
-        }
-        if(controlPoint.getDevice(Parameter.DEV_DOOR) != null) {
-            stateDoor.setText("Connected");
-        }
-    }
-
-    public void startControlPoint() {
-        controlPoint.search();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,12 +43,19 @@ public class HomeActivity extends Activity implements DeviceDiscoverTarget{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    private void saveConnectionInfo(String ip, String port) {
+        PreferenceManager.getDefaultSharedPreferences(this).edit()
+                .putString(PREF_IP, ip)
+                .putString(PREF_PORT, port)
+                .commit();
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 }
