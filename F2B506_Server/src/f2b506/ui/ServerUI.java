@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,11 +24,15 @@ public class ServerUI {
 	private JLabel nameBand;
 	private PresenceStatusLabel stateChair;
 	private PresenceStatusLabel stateBed;
-	private JLabel stateBand;
+	private PresenceStatusLabel stateBand;
 	private JLabel walkTime;
 	private JLabel walkStep;
 	private JLabel runTime;
 	private JLabel runStep;
+	private TimeLabel walkTimeRes;
+	private StepLabel walkStepRes;
+	private TimeLabel runTimeRes;
+	private StepLabel runStepRes;
 	private JTextArea debugInfo;
 	
 	public ServerUI() {
@@ -39,11 +42,15 @@ public class ServerUI {
 		nameBand = new JLabel("Band");
 		stateChair = new PresenceStatusLabel("Disconnected");
 		stateBed = new PresenceStatusLabel("Disconnected");
-		stateBand = new JLabel("Disconnected");
+		stateBand = new PresenceStatusLabel("Disconnected");
 		walkTime = new JLabel("Walking Time");
 		walkStep = new JLabel("Walking Steps");
 		runTime = new JLabel("Running Time");
 		runStep = new JLabel("Running Steps");
+		walkTimeRes = new TimeLabel("Walking Time");
+		walkStepRes = new StepLabel("Walking Steps");
+		runTimeRes = new TimeLabel("Running Time");
+		runStepRes = new StepLabel("Running Steps");
 		debugInfo = new JTextArea("Loading debugging info...");
 		debugInfo.setSize(200, 500);
 		debugInfo.setEditable(false);
@@ -51,6 +58,12 @@ public class ServerUI {
 		debugInfo.setWrapStyleWord(true);
 		JScrollPane scrollPane = new JScrollPane(debugInfo); 
 		views.put("chair", stateChair);
+		views.put("bed", stateBed);
+		views.put("band", stateBand);
+		views.put("walkTime", walkTimeRes);
+		views.put("walkStep", walkStepRes);
+		views.put("runTime", runTimeRes);
+		views.put("runStep", runStepRes);
 		views.put("debug", debugInfo);
 		
 		
@@ -65,17 +78,23 @@ public class ServerUI {
 		frame.add(scrollPane, BorderLayout.CENTER);
 		
 		statusPanel.setSize(400, 100);
-		statusPanel.setLayout(new GridLayout(3, 2));
+		statusPanel.setLayout(new GridLayout(7, 2));
 		statusPanel.add(nameChair);
 		statusPanel.add(stateChair);
 		statusPanel.add(nameBed);
 		statusPanel.add(stateBed);
 		statusPanel.add(nameBand);
 		statusPanel.add(stateBand);
-//		statusPanel.add(walkTime);
-//		statusPanel.add(walkStep);
-//		statusPanel.add(runTime);
-//		statusPanel.add(runStep);
+		
+	
+		statusPanel.add(walkTime);
+		statusPanel.add(walkTimeRes);
+		statusPanel.add(walkStep);
+		statusPanel.add(walkStepRes);
+		statusPanel.add(runTime);
+		statusPanel.add(runTimeRes);
+		statusPanel.add(runStep);
+		statusPanel.add(runStepRes);
 		
 		
 		frame.setVisible(true);

@@ -15,6 +15,8 @@ import org.cybergarage.upnp.event.EventListener;
 import org.cybergarage.upnp.ssdp.SSDPPacket;
 
 import f2b506.ui.PresenceStatusLabel;
+import f2b506.ui.TimeLabel;
+import f2b506.ui.StepLabel;
 
 public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 		NotifyListener, EventListener, SearchResponseListener {
@@ -50,8 +52,19 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 						try {
 							updateDebugInfo();
 							((PresenceStatusLabel) views.get("chair"))
-									.setStatus(getChairState());
-							
+									.setStatus(getDeviceState(chairDevice));
+							((PresenceStatusLabel) views.get("bed"))
+							.setStatus(getDeviceState(bedDevice));
+							((PresenceStatusLabel) views.get("band"))
+							.setStatus(getDeviceState(bandDevice));
+							((TimeLabel) views.get("walkTime"))
+							.setTime(getBandInfo("walkTime"));
+							((StepLabel) views.get("walkStep"))
+							.setStep(getBandInfo("walkStep"));
+							((TimeLabel) views.get("runTime"))
+							.setTime(getBandInfo("runTime"));
+							((StepLabel) views.get("runStep"))
+							.setStep(getBandInfo("runStep"));
 						} catch (DeviceNotAvailableException e) {
 							// Nothing
 						}
@@ -70,22 +83,35 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 	// //////////////////////////////////////////////
 
 	public void deviceNotifyReceived(SSDPPacket packet) {
-		System.out.println("deviceNotifyReceived");
+//		System.out.println("deviceNotifyReceived");
 		if (chairDevice == null) {
 			chairDevice = getDevice(CHAIR_DEVICE_TYPE);
 		}
+		if (bedDevice == null) {
+			bedDevice = getDevice(BED_DEVICE_TYPE);
+		}
+		if (bandDevice == null) {
+			bandDevice = getDevice(BAND_DEVICE_TYPE);
+		}
+		
 	}
 
 	public void deviceSearchResponseReceived(SSDPPacket packet) {
-		System.out.println("deviceSearchResponseReceived");
+//		System.out.println("deviceSearchResponseReceived");
 		if (chairDevice == null) {
 			chairDevice = getDevice(CHAIR_DEVICE_TYPE);
+		}
+		if (bedDevice == null) {
+			bedDevice = getDevice(BED_DEVICE_TYPE);
+		}
+		if (bandDevice == null) {
+			bandDevice = getDevice(BAND_DEVICE_TYPE);
 		}
 	}
 
 	public void eventNotifyReceived(String uuid, long seq, String name,
 			String value) {
-		System.out.println("eventNotifyReceived");
+//		System.out.println("eventNotifyReceived");
 	}
 
 	// //////////////////////////////////////////////
@@ -98,15 +124,25 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 	 * @return
 	 * @throws DeviceNotAvailableException
 	 */
-	public boolean getChairState() throws DeviceNotAvailableException {
-		if (chairDevice == null)
+	public boolean getDeviceState(Device device) throws DeviceNotAvailableException {
+		if (device == null)
 			throw new DeviceNotAvailableException();
-		Action getState = chairDevice.getAction("GetState");
+		Action getState = device.getAction("GetState");
 		if (getState.postControlAction() == false)
 			throw new DeviceNotAvailableException();
 		ArgumentList outArgList = getState.getOutputArgumentList();
 		String powerState = outArgList.getArgument(0).getValue();
 		return powerState.equals("1");
+	}
+	
+	public String getBandInfo(String actionName) throws DeviceNotAvailableException {
+		if (bandDevice == null)
+			throw new DeviceNotAvailableException();
+		Action getState = bandDevice.getAction(actionName);
+		if (getState.postControlAction() == false)
+			throw new DeviceNotAvailableException();
+		ArgumentList outArgList = getState.getOutputArgumentList();
+		return outArgList.getArgument(0).getValue();
 	}
 
 	public void updateDebugInfo() {
