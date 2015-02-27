@@ -71,6 +71,9 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 
 	public void deviceNotifyReceived(SSDPPacket packet) {
 		System.out.println("deviceNotifyReceived");
+		if (chairDevice == null) {
+			chairDevice = getDevice(CHAIR_DEVICE_TYPE);
+		}
 	}
 
 	public void deviceSearchResponseReceived(SSDPPacket packet) {
