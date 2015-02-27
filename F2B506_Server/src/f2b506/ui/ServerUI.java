@@ -47,10 +47,10 @@ public class ServerUI {
 		walkStep = new JLabel("Walking Steps");
 		runTime = new JLabel("Running Time");
 		runStep = new JLabel("Running Steps");
-		walkTimeRes = new TimeLabel("Walking Time");
-		walkStepRes = new StepLabel("Walking Steps");
-		runTimeRes = new TimeLabel("Running Time");
-		runStepRes = new StepLabel("Running Steps");
+		walkTimeRes = new TimeLabel("");
+		walkStepRes = new StepLabel("");
+		runTimeRes = new TimeLabel("");
+		runStepRes = new StepLabel("");
 		debugInfo = new JTextArea("Loading debugging info...");
 		debugInfo.setSize(200, 500);
 		debugInfo.setEditable(false);
