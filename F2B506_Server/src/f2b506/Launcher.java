@@ -9,7 +9,5 @@ public class Launcher {
 		ServerUI serverUI = new ServerUI();
 		ControlPoint controlPoint = new ControlPoint(serverUI.getViews());
 		controlPoint.start();
-		
 	}
-
 }
