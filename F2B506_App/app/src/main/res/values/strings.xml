@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">F2B506 App</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="text_home_ipPortHint">Please enter the IP address and port number of the PC server.</string>
+    <string name="title_activity_monitor">MonitorActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+</resources>
