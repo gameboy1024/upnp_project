@@ -26,6 +26,10 @@ public class ServerUI {
 	private PresenceStatusLabel stateChair;
 	private PresenceStatusLabel stateBed;
 	private JLabel stateBand;
+	private JLabel walkTime;
+	private JLabel walkStep;
+	private JLabel runTime;
+	private JLabel runStep;
 	private JTextArea debugInfo;
 	
 	public ServerUI() {
@@ -36,6 +40,10 @@ public class ServerUI {
 		stateChair = new PresenceStatusLabel("Disconnected");
 		stateBed = new PresenceStatusLabel("Disconnected");
 		stateBand = new JLabel("Disconnected");
+		walkTime = new JLabel("Walking Time");
+		walkStep = new JLabel("Walking Steps");
+		runTime = new JLabel("Running Time");
+		runStep = new JLabel("Running Steps");
 		debugInfo = new JTextArea("Loading debugging info...");
 		debugInfo.setSize(200, 500);
 		debugInfo.setEditable(false);
@@ -64,6 +72,10 @@ public class ServerUI {
 		statusPanel.add(stateBed);
 		statusPanel.add(nameBand);
 		statusPanel.add(stateBand);
+//		statusPanel.add(walkTime);
+//		statusPanel.add(walkStep);
+//		statusPanel.add(runTime);
+//		statusPanel.add(runStep);
 		
 		
 		frame.setVisible(true);
