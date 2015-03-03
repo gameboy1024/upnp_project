@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0" >
+	<specVersion>
+		<major>1</major>
+		<minor>0</minor>
+	</specVersion>
+	<actionList>
+		<action>
+			<name>SetAlarmTime</name>
+			<argumentList>
+				<argument>
+					<name>AlarmTime</name>
+					<relatedStateVariable>AlarmTime</relatedStateVariable>
+					<direction>in</direction>
+				</argument>
+				<argument>
+					<name>ResultAlarmTime</name>
+					<relatedStateVariable>ResultAlarmTime</relatedStateVariable>
+					<direction>out</direction>
+				</argument>
+			</argumentList>
+		</action>
+		<action>
+			<name>GetAlarmTime</name>
+			<argumentList>
+				<argument>
+					<name>AlarmTime</name>
+					<relatedStateVariable>AlarmTime</relatedStateVariable>
+					<direction>out</direction>
+				</argument>
+			</argumentList>
+		</action>
+
+		<action>
+			<name>SetAlarmPower</name>
+			<argumentList>
+				<argument>
+					<name>AlarmPower</name>
+					<relatedStateVariable>AlarmPower</relatedStateVariable>
+					<direction>in</direction>
+				</argument>
+				<argument>
+					<name>ResultAlarmPower</name>
+					<relatedStateVariable>ResultAlarmPower</relatedStateVariable>
+					<direction>out</direction>
+				</argument>
+			</argumentList>
+		</action>
+		
+		<action>
+			<name>GetAlarmPower</name>
+			<argumentList>
+				<argument>
+					<name>AlarmPower</name>
+					<relatedStateVariable>AlarmPower</relatedStateVariable>
+					<direction>out</direction>
+				</argument>
+			</argumentList>
+		</action>
+		
+	</actionList>
+
+	<serviceStateTable>
+		<stateVariable sendEvents="yes">
+			<name>AlarmPower</name>
+			<dataType>boolean</dataType>
+		</stateVariable>
+		<stateVariable sendEvents="no">
+			<name>ResultAlarmPower</name>
+			<dataType>boolean</dataType>
+		</stateVariable>
+
+		<stateVariable sendEvents="Yes">
+			<name>AlarmTime</name>
+			<dataType>string</dataType>
+		</stateVariable>
+		<stateVariable sendEvents="no">
+			<name>ResultAlarmTime</name>
+			<dataType>string</dataType>
+		</stateVariable>
+	</serviceStateTable>
+</scpd>

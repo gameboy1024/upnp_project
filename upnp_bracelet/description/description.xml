@@ -1,0 +1,54 @@
+<?xml version="1.0" ?> 
+<root xmlns="urn:schemas-upnp-org:device-1-0">
+	<specVersion>
+		<major>1</major> 
+		<minor>0</minor> 
+	</specVersion>
+	<device>
+		<deviceType>urn:schemas-upnp-org:device:bracelet:1</deviceType> 
+		<friendlyName>SanteMetre Bracelet Device</friendlyName> 
+		<manufacturer>SanteMetre</manufacturer> 
+		<manufacturerURL>http://www.santemetre.org</manufacturerURL> 
+		<modelDescription>SanteMetre Bracelet Device</modelDescription> 
+		<modelName>Bracelet</modelName> 
+		<modelNumber>1.0</modelNumber> 
+		<modelURL>http://www.santemetre.org</modelURL> 
+		<serialNumber>90380852</serialNumber> 
+		<UDN>uuid:santemetreBraceletDevice</UDN> 
+		<UPC>903808529012</UPC> 
+		<iconList>
+			<icon>
+				<mimetype>image.gif</mimetype> 
+				<width>48</width> 
+				<height>32</height> 
+				<depth>8</depth> 
+				<url>icon.gif</url> 
+			</icon>
+		</iconList>
+		<serviceList>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:power:1</serviceType> 
+				<serviceId>urn:schemas-upnp-org:serviceId:power:1</serviceId> 
+				<SCPDURL>/service/power/description.xml</SCPDURL> 
+				<controlURL>/service/power/control</controlURL> 
+				<eventSubURL>/service/power/eventSub</eventSubURL> 
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:alarm:1</serviceType> 
+				<serviceId>urn:schemas-upnp-org:serviceId:alarm:1</serviceId> 
+				<SCPDURL>/service/alarm/description.xml</SCPDURL> 
+				<controlURL>/service/alarm/control</controlURL> 
+				<eventSubURL>/service/alarm/eventSub</eventSubURL> 
+			</service>
+			<service>
+				<serviceType>urn:schemas-upnp-org:service:sync:1</serviceType> 
+				<serviceId>urn:schemas-upnp-org:serviceId:sync:1</serviceId> 
+				<SCPDURL>/service/sync/description.xml</SCPDURL> 
+				<controlURL>/service/sync/control</controlURL> 
+				<eventSubURL>/service/sync/eventSub</eventSubURL> 
+			</service>
+		</serviceList>
+		<presentationURL>http://www.santemetre.org</presentationURL> 
+	</device>
+</root>
+
