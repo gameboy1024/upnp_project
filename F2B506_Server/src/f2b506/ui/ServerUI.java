@@ -1,10 +1,13 @@
 package f2b506.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 
-import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,11 +28,15 @@ public class ServerUI {
 	private JLabel nameBand;
 	private PresenceStatusLabel stateChair;
 	private PresenceStatusLabel stateBed;
-	private JLabel stateBand;
+	private JButton syncBand;
 	private JLabel walkTime;
 	private JLabel walkStep;
 	private JLabel runTime;
 	private JLabel runStep;
+	private TimeLabel walkTimeRes;
+	private StepLabel walkStepRes;
+	private TimeLabel runTimeRes;
+	private StepLabel runStepRes;
 	private JTextArea debugInfo;
 	
 	public ServerUI() {
@@ -39,11 +46,49 @@ public class ServerUI {
 		nameBand = new JLabel("Band");
 		stateChair = new PresenceStatusLabel("Disconnected");
 		stateBed = new PresenceStatusLabel("Disconnected");
-		stateBand = new JLabel("Disconnected");
+		syncBand = new JButton("Sync");
+		syncBand.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				walkTimeRes.setText("3h40m");
+				walkStepRes.setText("4608steps");
+				runTimeRes.setText("30m");
+				runStepRes.setText("3806steps");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		walkTime = new JLabel("Walking Time");
 		walkStep = new JLabel("Walking Steps");
 		runTime = new JLabel("Running Time");
 		runStep = new JLabel("Running Steps");
+		walkTimeRes = new TimeLabel("");
+		walkStepRes = new StepLabel("");
+		runTimeRes = new TimeLabel("");
+		runStepRes = new StepLabel("");
 		debugInfo = new JTextArea("Loading debugging info...");
 		debugInfo.setSize(200, 500);
 		debugInfo.setEditable(false);
@@ -51,6 +96,12 @@ public class ServerUI {
 		debugInfo.setWrapStyleWord(true);
 		JScrollPane scrollPane = new JScrollPane(debugInfo); 
 		views.put("chair", stateChair);
+		views.put("bed", stateBed);
+		views.put("band", syncBand);
+		views.put("walkTime", walkTimeRes);
+		views.put("walkStep", walkStepRes);
+		views.put("runTime", runTimeRes);
+		views.put("runStep", runStepRes);
 		views.put("debug", debugInfo);
 		
 		
@@ -65,17 +116,23 @@ public class ServerUI {
 		frame.add(scrollPane, BorderLayout.CENTER);
 		
 		statusPanel.setSize(400, 100);
-		statusPanel.setLayout(new GridLayout(3, 2));
+		statusPanel.setLayout(new GridLayout(7, 2));
 		statusPanel.add(nameChair);
 		statusPanel.add(stateChair);
 		statusPanel.add(nameBed);
 		statusPanel.add(stateBed);
 		statusPanel.add(nameBand);
-		statusPanel.add(stateBand);
-//		statusPanel.add(walkTime);
-//		statusPanel.add(walkStep);
-//		statusPanel.add(runTime);
-//		statusPanel.add(runStep);
+		statusPanel.add(syncBand);
+		
+	
+		statusPanel.add(walkTime);
+		statusPanel.add(walkTimeRes);
+		statusPanel.add(walkStep);
+		statusPanel.add(walkStepRes);
+		statusPanel.add(runTime);
+		statusPanel.add(runTimeRes);
+		statusPanel.add(runStep);
+		statusPanel.add(runStepRes);
 		
 		
 		frame.setVisible(true);
