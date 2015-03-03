@@ -31,7 +31,7 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 	private final static String BED_DEVICE_TYPE = "urn:schemas-upnp-org:device:bed:1";
 	private final static String BED_SERVICE_TYPE = "urn:schemas-upnp-org:service:state:1";
 
-	private final static String BAND_DEVICE_TYPE = "urn:schemas-upnp-org:device:aircon:1";
+	private final static String BAND_DEVICE_TYPE = "urn:schemas-upnp-org:device:bracelet:1";
 	private final static String BAND_SERVICE_TYPE = "urn:schemas-upnp-org:service:power:1";
 
 	private HashMap<String, Object> views;

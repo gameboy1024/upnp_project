@@ -1,9 +1,13 @@
 package f2b506.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,7 +28,7 @@ public class ServerUI {
 	private JLabel nameBand;
 	private PresenceStatusLabel stateChair;
 	private PresenceStatusLabel stateBed;
-	private PresenceStatusLabel stateBand;
+	private JButton syncBand;
 	private JLabel walkTime;
 	private JLabel walkStep;
 	private JLabel runTime;
@@ -42,7 +46,41 @@ public class ServerUI {
 		nameBand = new JLabel("Band");
 		stateChair = new PresenceStatusLabel("Disconnected");
 		stateBed = new PresenceStatusLabel("Disconnected");
-		stateBand = new PresenceStatusLabel("Disconnected");
+		syncBand = new JButton("Sync");
+		syncBand.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				walkTimeRes.setText("3h40m");
+				walkStepRes.setText("4608steps");
+				runTimeRes.setText("30m");
+				runStepRes.setText("3806steps");
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		walkTime = new JLabel("Walking Time");
 		walkStep = new JLabel("Walking Steps");
 		runTime = new JLabel("Running Time");
@@ -59,7 +97,7 @@ public class ServerUI {
 		JScrollPane scrollPane = new JScrollPane(debugInfo); 
 		views.put("chair", stateChair);
 		views.put("bed", stateBed);
-		views.put("band", stateBand);
+		views.put("band", syncBand);
 		views.put("walkTime", walkTimeRes);
 		views.put("walkStep", walkStepRes);
 		views.put("runTime", runTimeRes);
@@ -84,7 +122,7 @@ public class ServerUI {
 		statusPanel.add(nameBed);
 		statusPanel.add(stateBed);
 		statusPanel.add(nameBand);
-		statusPanel.add(stateBand);
+		statusPanel.add(syncBand);
 		
 	
 		statusPanel.add(walkTime);
