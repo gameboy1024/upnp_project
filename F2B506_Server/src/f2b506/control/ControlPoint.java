@@ -55,16 +55,16 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 									.setStatus(getDeviceState(chairDevice));
 							((PresenceStatusLabel) views.get("bed"))
 							.setStatus(getDeviceState(bedDevice));
-							((PresenceStatusLabel) views.get("band"))
-							.setStatus(getDeviceState(bandDevice));
-							((TimeLabel) views.get("walkTime"))
-							.setTime(getBandInfo("walkTime"));
-							((StepLabel) views.get("walkStep"))
-							.setStep(getBandInfo("walkStep"));
-							((TimeLabel) views.get("runTime"))
-							.setTime(getBandInfo("runTime"));
-							((StepLabel) views.get("runStep"))
-							.setStep(getBandInfo("runStep"));
+//							((PresenceStatusLabel) views.get("band"))
+//							.setStatus(getDeviceState(bandDevice));
+//							((TimeLabel) views.get("walkTime"))
+//							.setTime(getBandInfo("walkTime"));
+//							((StepLabel) views.get("walkStep"))
+//							.setStep(getBandInfo("walkStep"));
+//							((TimeLabel) views.get("runTime"))
+//							.setTime(getBandInfo("runTime"));
+//							((StepLabel) views.get("runStep"))
+//							.setStep(getBandInfo("runStep"));
 						} catch (DeviceNotAvailableException e) {
 							// Nothing
 						}
@@ -144,6 +144,13 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 		ArgumentList outArgList = getState.getOutputArgumentList();
 		return outArgList.getArgument(0).getValue();
 	}
+	
+	public boolean isBandFound(){
+		if(bandDevice == null){
+			return false;
+		}
+		return true;
+	}
 
 	public void updateDebugInfo() {
 		((JTextArea) views.get("debug")).setText(printAllDevices());
@@ -188,6 +195,14 @@ public class ControlPoint extends org.cybergarage.upnp.ControlPoint implements
 			}
 		}
 
+	}
+
+	public HashMap<String, Object> getViews() {
+		return views;
+	}
+
+	public void setViews(HashMap<String, Object> views) {
+		this.views = views;
 	}
 
 }

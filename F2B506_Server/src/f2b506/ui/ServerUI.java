@@ -1,10 +1,10 @@
 package f2b506.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import f2b506.control.BandSynchronisation;
+import f2b506.control.ControlPoint;
+
 public class ServerUI {
 	private HashMap<String, Object> views;
 	
@@ -21,6 +24,7 @@ public class ServerUI {
 		return views;
 	}
 
+	private ControlPoint controlPoint; 
 	private JFrame frame;
 	private JPanel statusPanel;
 	private JLabel nameChair;
@@ -38,6 +42,7 @@ public class ServerUI {
 	private TimeLabel runTimeRes;
 	private StepLabel runStepRes;
 	private JTextArea debugInfo;
+	private JButton profile;
 	
 	public ServerUI() {
 		views = new HashMap<String, Object>();
@@ -57,10 +62,7 @@ public class ServerUI {
 			
 			@Override
 			public void mousePressed(MouseEvent e) {
-				walkTimeRes.setText("3h40m");
-				walkStepRes.setText("4608steps");
-				runTimeRes.setText("30m");
-				runStepRes.setText("3806steps");
+				BandSynchronisation.start(controlPoint);
 			}
 			
 			@Override
@@ -116,7 +118,7 @@ public class ServerUI {
 		frame.add(scrollPane, BorderLayout.CENTER);
 		
 		statusPanel.setSize(400, 100);
-		statusPanel.setLayout(new GridLayout(7, 2));
+		statusPanel.setLayout(new GridLayout(8, 2));
 		statusPanel.add(nameChair);
 		statusPanel.add(stateChair);
 		statusPanel.add(nameBed);
@@ -134,8 +136,55 @@ public class ServerUI {
 		statusPanel.add(runStep);
 		statusPanel.add(runStepRes);
 		
+		profile = new JButton("My page SantéMètre");
+		statusPanel.add(profile);
+		profile.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					java.awt.Desktop.getDesktop().browse(java.net.URI.create("https://www.google.fr/"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		frame.setVisible(true);
+	}
+
+	public ControlPoint getControlPoint() {
+		return controlPoint;
+	}
+
+	public void setControlPoint(ControlPoint controlPoint) {
+		this.controlPoint = controlPoint;
 	}
 	
 

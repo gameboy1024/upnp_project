@@ -8,6 +8,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		ServerUI serverUI = new ServerUI();
 		ControlPoint controlPoint = new ControlPoint(serverUI.getViews());
+		serverUI.setControlPoint(controlPoint);
 		controlPoint.start();
 	}
 }
