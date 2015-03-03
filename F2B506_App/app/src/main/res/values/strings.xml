@@ -6,4 +6,13 @@
     <string name="title_activity_monitor">MonitorActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_resting">RestingActivity</string>
+    <string name="title_activity_sports">SportsActivity</string>
+    <string name="title_activity_alarm">AlarmActivity</string>
+    <string name="time_picker_example">Time Picker Example</string>
+    <string name="time_pick">Pick the time and press save button</string>
+    <string name="time_save">Set alarm</string>
+    <string name="time_selected"></string>
+    <string name="time_current">The Time is:</string>
 </resources>
